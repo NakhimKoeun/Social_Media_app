@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
                                 },
                                 child: CircleAvatar(
                                   backgroundImage:
-                                      FileImage(controller.photoProfile!),
+                                  FileImage(controller.photoProfile!),
                                 ),
                               ),
                             ),
@@ -171,15 +171,15 @@ class RegisterScreen extends StatelessWidget {
                       children: [
                         Expanded(
                             child: Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                        )),
+                              color: Colors.grey,
+                              thickness: 1,
+                            )),
                         Text("OR"),
                         Expanded(
                             child: Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                        ))
+                              color: Colors.grey,
+                              thickness: 1,
+                            ))
                       ],
                     ),
                     //add register button

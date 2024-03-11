@@ -13,7 +13,7 @@ class RegisterController extends GetxController {
   //create a method select profile frome galary
   void selectPhotoProfile() async {
     final pickedFile =
-        await _imagePicker.pickImage(source: ImageSource.gallery);
+    await _imagePicker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       photoProfile = File(pickedFile.path);
       update();
@@ -25,12 +25,12 @@ class RegisterController extends GetxController {
 
   void register(
       {required String name,
-      required String email,
-      required password,
-      required File? profile}) async {
+        required String email,
+        required password,
+        required File? profile}) async {
     try {
       final res = await _helper.registerUser(
-        name: name, email: email, profile: profile, password: password);
+          name: name, email: email, profile: profile, password: password);
       Get.back(result: true);
     } catch (e) {
       Get.snackbar("Error", e.toString());

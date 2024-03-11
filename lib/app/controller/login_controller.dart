@@ -11,7 +11,7 @@ class LoginController extends GetxController {
   void login({required String email, required String password}) async {
     try{
       final user = await _api.login(email: email, password: password);
-     // print('user,${jsonEncode(user)}');
+     //print('user,${jsonEncode(user)}');
       setToken(user.acessToken!);
       Get.offAllNamed("/home");
     }catch(e){

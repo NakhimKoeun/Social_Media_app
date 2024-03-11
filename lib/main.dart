@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
         GetPage(
         name: "/login",
            page: () => LogingScreen(),
-            //binding: LoginBinding()
+            binding: LoginBinding()
         ),
         GetPage(name: "/register", page: () => RegisterScreen()),
         GetPage(

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controller/profile_controller.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
   final controller = Get.find<ProfileController>();
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +18,9 @@ class EditProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: GetBuilder<ProfileController>(builder: (context) {
               final TextEditingController _nameController =
-              TextEditingController();
+                  TextEditingController();
               final TextEditingController _emailController =
-              TextEditingController();
+                  TextEditingController();
               _nameController.text = controller.currentUser.name!;
               _emailController.text = controller.currentUser.email!;
               return Column(
@@ -29,37 +28,59 @@ class EditProfileScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
-                  Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 60.0,
-                        backgroundImage: NetworkImage(
-                            "${controller.currentUser.profileUrl}"),
-                      ),
-                      Positioned(
-                        bottom: 0.0,
-                        right: 1.0,
-                        child: GestureDetector(
-                          onTap: () {
-                            print("pressed");
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            child: Icon(
-                              Icons.add_a_photo,
-                              color: Colors.white,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.deepOrange,
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(20.0)),
+                  GetBuilder<ProfileController>(builder: (context) {
+                    if (controller.photoProfile != null) {
+                      return Stack(
+                        children: [
+                          SizedBox(
+                            height: Get.height * 0.2,
+                            width: Get.width * 0.3,
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.selectPhotoProfile();
+
+                                //print("select photo profile");
+                              },
+                              child: CircleAvatar(
+                                backgroundImage:
+                                    FileImage(controller.photoProfile!),
+                              ),
                             ),
                           ),
+                          Positioned(
+                            right: 0,
+                            bottom: 30,
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.selectPhotoProfile();
+
+                                // print("select photo profile");
+                              },
+                              child: const CircleAvatar(
+                                backgroundColor: Colors.grey,
+                                child: Icon(Icons.camera_alt),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                    return Container(
+                      height: Get.height * 0.2,
+                      width: Get.width * 0.3,
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.selectPhotoProfile();
+
+                          print("select photo profile");
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          child: Icon(Icons.camera_alt),
                         ),
                       ),
-                    ],
-                  ),
+                    );
+                  }),
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
@@ -92,7 +113,10 @@ class EditProfileScreen extends StatelessWidget {
                     children: [
                       Expanded(
                           child: TextButton(
-                              onPressed: () {}, child: Text("Save"))),
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: Text("Save"))),
                     ],
                   ),
                 ],

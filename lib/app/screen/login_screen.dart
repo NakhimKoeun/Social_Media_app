@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class LogingScreen extends StatelessWidget {
   LogingScreen({super.key});
   final _forkey = GlobalKey<FormState>();
-  final emailCon = TextEditingController(text: "shank@gmail.com");
+  final emailCon = TextEditingController(text: "nakhim@gmail.com");
   final passwordCon = TextEditingController(text: "123123");
   final _cotroller = Get.put(LoginController());
   @override
@@ -109,10 +109,10 @@ class LogingScreen extends StatelessWidget {
                   //add register button
                   TextButton(
                     onPressed: () async{
-                     final status = await Get.to(() => RegisterScreen());
-                     if(status == true){
-                       Get.snackbar("Success","Register Success");
-                     }
+                      final status = await Get.to(() => RegisterScreen());
+                      if(status == true){
+                        Get.snackbar("Success","Register Success");
+                      }
                     },
                     child: Text("Register"),
                   )

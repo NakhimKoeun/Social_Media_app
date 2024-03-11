@@ -1,4 +1,5 @@
 import 'package:blog_app/app/controller/homecontroller.dart';
+import 'package:blog_app/app/controller/post_controller.dart';
 import 'package:blog_app/app/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,11 +10,12 @@ import '../controller/profile_controller.dart';
 class HomeScreen extends StatelessWidget {
    HomeScreen({super.key});
    final controller = Get.put(ProfileController());
+   final postController = Get.put(PostController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("A1"),
       ),
       body: GetBuilder<HomeController>(
         builder: (controller){
@@ -26,7 +28,6 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-
       bottomNavigationBar: GetBuilder<HomeController>(
         builder: (controller) {
           return BottomNavigationBar(
@@ -34,7 +35,6 @@ class HomeScreen extends StatelessWidget {
             onTap: (index){
               controller.changeIndex(index);
             },
-
             items: const [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined), label: "Home"),
